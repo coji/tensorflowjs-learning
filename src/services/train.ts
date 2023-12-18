@@ -82,7 +82,9 @@ function createModel() {
 	// Add a single input layer
 	model.add(tf.layers.dense({ inputShape: [1], units: 1 }))
 
-	model.add(tf.layers.dense({ units: 50, activation: 'sigmoid' }))
+	model.add(tf.layers.dense({ units: 50, activation: 'relu' }))
+	model.add(tf.layers.dense({ units: 50, activation: 'relu' }))
+	model.add(tf.layers.dense({ units: 50, activation: 'relu' }))
 
 	// Add an output layer
 	model.add(tf.layers.dense({ units: 1 }))
