@@ -1,5 +1,6 @@
-import { run } from './services/train'
-import { tfvis } from './services/tfvis'
+import { run } from '@/services/train'
+import { tfvis } from '@/services/tfvis'
+import { Button } from '@/components/ui/button'
 
 export const App = () => {
 	const handleClickRun = () => {
@@ -19,17 +20,15 @@ export const App = () => {
 					<span className="text-slate-500">Practice</span>
 				</h1>
 
-				<div>
-					<button type="button" onClick={handleClickToggleVisor}>
-						toggle
-					</button>
-				</div>
+				<Button variant="destructive" onClick={handleClickToggleVisor}>
+					toggle
+				</Button>
 			</header>
 
-			<main className="bg-slate-200">
-				<button type="button" onClick={() => handleClickRun()}>
+			<main className="container bg-slate-200">
+				<Button type="button" onClick={() => handleClickRun()}>
 					Run
-				</button>
+				</Button>
 			</main>
 
 			<footer className="px-2 py-1 text-center shadow">

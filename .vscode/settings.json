@@ -9,5 +9,11 @@
 		"**/Thumbs.db": true,
 		"**/.ruby-lsp": true,
 		"**/node_modules": true
+	},
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	}
 }

@@ -18,7 +18,11 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
 
-		"types": ["bun-types", "@types/web"]
+		"types": ["bun-types", "@types/web"],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
 	},
 	"include": ["src"]
 }
