@@ -1,6 +1,7 @@
 import { run } from '@/services/train'
 import { tfvis } from '@/services/tfvis'
 import { Button } from '@/components/ui/button'
+import { VisorToggleButton } from './components/VisorToggleButton'
 
 export const App = () => {
 	const handleClickRun = () => {
@@ -8,21 +9,15 @@ export const App = () => {
 		run()
 	}
 
-	const handleClickToggleVisor = () => {
-		tfvis.visor().toggle()
-	}
-
 	return (
 		<div className="grid grid-cols-1 grid-rows-[auto_1fr_auto] h-screen">
 			<header className="px-2 py-1 shadow flex items-center">
 				<h1 className="text-lg flex-1">
-					<span className="text-slate-500 font-bold">Tensorflow.js</span>{' '}
-					<span>Practice</span>
+					<span className="font-bold">Tensorflow.js</span>{' '}
+					<span className="text-slate-500">Practice</span>
 				</h1>
 
-				<Button variant="secondary" onClick={handleClickToggleVisor}>
-					{tfvis.visor().isOpen() ? 'Close' : 'Open'} Visor
-				</Button>
+				<VisorToggleButton />
 			</header>
 
 			<main className="container bg-slate-200 flex justify-center items-center h-full">
