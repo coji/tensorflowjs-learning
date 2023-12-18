@@ -109,11 +109,36 @@ async function trainModel(
 		batchSize,
 		epochs,
 		shuffle: true,
-		callbacks: tfvis.show.fitCallbacks(
-			{ name: 'Training Performance' },
-			['loss', 'mse'],
-			{ height: 200, callbacks: ['onEpochEnd'] },
-		),
+		callbacks: [
+			tfvis.show.fitCallbacks(
+				{ name: 'Training Performance' },
+				['loss', 'mse'],
+				{ height: 200, callbacks: ['onEpochEnd'] },
+			),
+			{
+				onTrainBegin: () => {
+					console.log('onTrainBegin')
+				},
+				onTrainEnd: () => {
+					console.log('onTrainEnd')
+				},
+				onEpochBegin: (epoch: number) => {
+					console.log('onEpochBegin', epoch)
+				},
+				onEpochEnd: (epoch: number) => {
+					console.log('onEpochEnd', epoch)
+				},
+				onBatchBegin: (batch: number) => {
+					console.log('onBatchBegin', batch)
+				},
+				onBatchEnd: (batch: number) => {
+					console.log('onBatchEnd', batch)
+				},
+				onYield: (epoch: number, batch: number) => {
+					console.log('onYield', epoch, batch)
+				},
+			},
+		],
 	})
 }
 
@@ -166,7 +191,7 @@ function testModel(
 /**
  * メイン
  */
-async function run() {
+export async function run() {
 	// Load and plot the original input data that we are going to train on.
 	const data = await getData()
 	const values = data.map((d) => ({
@@ -199,5 +224,3 @@ async function run() {
 	// original data
 	testModel(model, data, tensorData)
 }
-
-document.addEventListener('DOMContentLoaded', run)
