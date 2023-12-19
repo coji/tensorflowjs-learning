@@ -6,6 +6,8 @@ interface CarData {
 	horsepower: number
 }
 
+let model: tf.LayersModel | null = null
+
 /**
  * Get the car data reduced to just the variables we are interested
  * and cleaned of missing data.
@@ -169,8 +171,7 @@ function testModel(
 /**
  * メイン
  */
-export async function run() {
-	// Load and plot the original input data that we are going to train on.
+export async function train() {
 	const data = await getData()
 	const values = data.map((d) => ({
 		x: d.horsepower,
@@ -187,20 +188,17 @@ export async function run() {
 		},
 	)
 
-	const model = createModel()
-	tfvis.show.modelSummary({ name: 'Model Summary' }, model)
-
-	// Convert the data to a form we can use for training.
 	const tensorData = convertToTensor(data)
 	const { inputs, labels } = tensorData
 
-	// Train the model
-	await trainModel(model, inputs, labels)
-	console.log('Done Training')
+	model = await tf.loadLayersModel('localstorage://my-model-1')
+	if (!model) {
+		model = createModel()
+		tfvis.show.modelSummary({ name: 'Model Summary' }, model)
+		await trainModel(model, inputs, labels)
+	}
 
 	// Make some predictions using the model and compare them to the
-	const result = testModel(model, data, tensorData)
-	console.log(result)
-
+	testModel(model, data, tensorData)
 	await model.save('localstorage://my-model-1')
 }
