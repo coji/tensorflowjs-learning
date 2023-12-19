@@ -1,14 +1,7 @@
-import { train } from '@/models/car/train'
-import { tfvis } from '@/services/tfvis'
-import { Button } from '@/components/ui/button'
-import { VisorToggleButton } from './components/VisorToggleButton'
+import { Outlet } from 'react-router-dom'
+import { VisorToggleButton } from '@/components/VisorToggleButton'
 
-export const App = () => {
-	const handleClickRun = () => {
-		tfvis.visor().open()
-		train()
-	}
-
+export const Root = () => {
 	return (
 		<div className="grid grid-cols-1 grid-rows-[auto_1fr_auto] h-screen">
 			<header className="px-2 py-1 shadow flex items-center">
@@ -21,9 +14,7 @@ export const App = () => {
 			</header>
 
 			<main className="container bg-slate-200 flex justify-center items-center h-full">
-				<Button type="button" onClick={() => handleClickRun()}>
-					Run
-				</Button>
+				<Outlet />
 			</main>
 
 			<footer className="px-2 py-2 text-center shadow">

@@ -168,10 +168,32 @@ function testModel(
 	return { originalPoints, predictedPoints }
 }
 
+export const isModelLoaded = () => !!model
+export const modelStatus = () => {
+	return model ? model.name : undefined
+}
+
 /**
- * メイン
+ * 初期化
+ * @returns モデルが読み込めたかどうか
  */
-export async function train() {
+export const initialize = async () => {
+	if (!model) {
+		model = await tf
+			.loadLayersModel('localstorage://my-model-1')
+			.catch(() => null)
+	}
+	return !!model // モデルが読み込めたかどうか
+}
+
+/**
+ * モデルの作成と訓練
+ */
+export const createAndTrainModel = async () => {
+	if (model) {
+		return true
+	}
+
 	// 訓練データ、テストデータの取得と準備
 	const data = await getData()
 	const values = data.map((d) => ({
@@ -190,18 +212,26 @@ export async function train() {
 	const tensorData = convertToTensor(data)
 	const { inputs, labels } = tensorData
 
-	// 保存済みモデルの読み込み
-	model = await tf
-		.loadLayersModel('localstorage://my-model-1')
-		.catch(() => null)
+	model = createModel()
+	tfvis.show.modelSummary({ name: 'Model Summary' }, model)
+	await trainModel(model, inputs, labels)
+
+	// Save the model
+	await model.save('localstorage://my-model-1')
+}
+
+/**
+ * モデルのテスト
+ */
+export const runTest = async () => {
 	if (!model) {
-		//
-		model = createModel()
-		tfvis.show.modelSummary({ name: 'Model Summary' }, model)
-		await trainModel(model, inputs, labels)
+		throw new Error('モデルが読み込まれていません')
 	}
+
+	// 訓練データ、テストデータの取得と準備
+	const data = await getData()
+	const tensorData = convertToTensor(data)
 
 	// Make some predictions using the model and compare them to the
 	testModel(model, data, tensorData)
-	await model.save('localstorage://my-model-1')
 }
