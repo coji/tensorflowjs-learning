@@ -172,12 +172,12 @@ function testModel(
  * メイン
  */
 export async function train() {
+	// 訓練データ、テストデータの取得と準備
 	const data = await getData()
 	const values = data.map((d) => ({
 		x: d.horsepower,
 		y: d.mpg,
 	}))
-
 	tfvis.render.scatterplot(
 		{ name: 'Horsepower v MPG' },
 		{ values },
@@ -187,12 +187,15 @@ export async function train() {
 			height: 300,
 		},
 	)
-
 	const tensorData = convertToTensor(data)
 	const { inputs, labels } = tensorData
 
-	model = await tf.loadLayersModel('localstorage://my-model-1')
+	// 保存済みモデルの読み込み
+	model = await tf
+		.loadLayersModel('localstorage://my-model-1')
+		.catch(() => null)
 	if (!model) {
+		//
 		model = createModel()
 		tfvis.show.modelSummary({ name: 'Model Summary' }, model)
 		await trainModel(model, inputs, labels)
