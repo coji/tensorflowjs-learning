@@ -27,7 +27,27 @@ export const App = () => {
 			</main>
 
 			<footer className="px-2 py-2 text-center shadow">
-				Copyright &copy; coji
+				<p>
+					Copyright &copy;{' '}
+					<a
+						className="underline"
+						target="_blank"
+						rel="noreferrer"
+						href="https://twitter.com/techtalkjp"
+					>
+						coji
+					</a>
+				</p>
+				<p>
+					<a
+						className="underline"
+						target="_blank"
+						rel="noreferrer"
+						href="https://github.com/coji/tensorflowjs-learning"
+					>
+						GitHub
+					</a>
+				</p>
 			</footer>
 		</div>
 	)
