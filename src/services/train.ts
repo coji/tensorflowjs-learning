@@ -105,42 +105,17 @@ async function trainModel(
 	})
 
 	const batchSize = 32
-	const epochs = 50
+	const epochs = 10
 
 	return await model.fit(inputs, labels, {
 		batchSize,
 		epochs,
 		shuffle: true,
-		callbacks: [
-			tfvis.show.fitCallbacks(
-				{ name: 'Training Performance' },
-				['loss', 'mse'],
-				{ height: 200, callbacks: ['onEpochEnd'] },
-			),
-			{
-				onTrainBegin: () => {
-					console.log('onTrainBegin')
-				},
-				onTrainEnd: () => {
-					console.log('onTrainEnd')
-				},
-				onEpochBegin: (epoch: number) => {
-					console.log('onEpochBegin', epoch)
-				},
-				onEpochEnd: (epoch: number) => {
-					console.log('onEpochEnd', epoch)
-				},
-				onBatchBegin: (batch: number) => {
-					console.log('onBatchBegin', batch)
-				},
-				onBatchEnd: (batch: number) => {
-					console.log('onBatchEnd', batch)
-				},
-				onYield: (epoch: number, batch: number) => {
-					console.log('onYield', epoch, batch)
-				},
-			},
-		],
+		callbacks: tfvis.show.fitCallbacks(
+			{ name: 'Training Performance' },
+			['loss', 'mse'],
+			{ height: 200, callbacks: ['onEpochEnd'] },
+		),
 	})
 }
 
@@ -160,7 +135,6 @@ function testModel(
 		if (Array.isArray(preds)) throw new Error('preds is array')
 
 		const unNormXs = xs.mul(inputMax.sub(inputMin)).add(inputMin)
-
 		const unNormPreds = preds.mul(labelMax.sub(labelMin)).add(labelMin)
 
 		// Un-normalize the data
@@ -188,6 +162,8 @@ function testModel(
 			height: 300,
 		},
 	)
+
+	return { originalPoints, predictedPoints }
 }
 
 /**
@@ -223,6 +199,6 @@ export async function run() {
 	console.log('Done Training')
 
 	// Make some predictions using the model and compare them to the
-	// original data
-	testModel(model, data, tensorData)
+	const result = testModel(model, data, tensorData)
+	console.log(result)
 }
