@@ -1,4 +1,4 @@
-import { run } from '@/services/train'
+import { run } from '@/models/car/train'
 import { tfvis } from '@/services/tfvis'
 import { Button } from '@/components/ui/button'
 import { VisorToggleButton } from './components/VisorToggleButton'

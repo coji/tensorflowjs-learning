@@ -1,5 +1,5 @@
 import * as tf from '@tensorflow/tfjs'
-import { tfvis } from './tfvis'
+import { tfvis } from '../../services/tfvis'
 
 interface CarData {
 	mpg: number
@@ -201,4 +201,6 @@ export async function run() {
 	// Make some predictions using the model and compare them to the
 	const result = testModel(model, data, tensorData)
 	console.log(result)
+
+	await model.save('localstorage://my-model-1')
 }
