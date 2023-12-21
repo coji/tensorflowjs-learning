@@ -1,5 +1,5 @@
-import { tfvis } from '@/services/tfvis'
-import { Toggle } from '@/components/ui/toggle'
+import { tfvis } from '~/services/tfvis'
+import { Toggle } from '~/components/ui/toggle'
 import { ArrowLeftFromLine, ArrowRightFromLine } from 'lucide-react'
 import React from 'react'
 

@@ -1,5 +1,5 @@
 import * as tf from '@tensorflow/tfjs'
-import { tfvis } from '../../services/tfvis'
+import { tfvis } from '~/services/tfvis'
 
 interface CarData {
 	mpg: number

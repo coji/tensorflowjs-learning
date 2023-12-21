@@ -3,18 +3,19 @@ import {
 	createAndTrainModel,
 	runTest,
 	modelStatus,
-} from '@/models/car/mpg'
-import { tfvis } from '@/services/tfvis'
-import { Button } from '@/components/ui/button'
-import { json, useLoaderData } from 'react-router-dom'
+} from '~/models/car/mpg'
+import { tfvis } from '~/services/tfvis'
+import { Button } from '~/components/ui/button'
 import React from 'react'
+import { json } from '@vercel/remix'
+import { useLoaderData } from '@remix-run/react'
 
 export const loader = async () => {
 	const isModelLoaded = await initialize()
 	return json({ isModelLoaded })
 }
 
-export const IndexPage = () => {
+export default function IndexPage() {
 	const { isModelLoaded } = useLoaderData() as { isModelLoaded: boolean }
 	const [isPrepared, setIsPrepared] = React.useState(isModelLoaded)
 

@@ -1,5 +1,5 @@
 import * as tfvis from '@tensorflow/tfjs-vis'
 
-tfvis.visor().close()
+// tfvis.visor().close()
 
 export { tfvis }

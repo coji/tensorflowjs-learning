@@ -1,0 +1,67 @@
+diff --git a/dist/index.js b/dist/index.js
+index 8b3e4da35cc1048ff486bb83740630eea6aa0f4b..aaf1814f493cd19dadad4039dd5ac74f1ac81444 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1,6 +1,6 @@
+ "use strict";
+ function __export(m) {
+-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
++  for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+ }
+ Object.defineProperty(exports, "__esModule", { value: true });
+ /**
+@@ -21,7 +21,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
+  */
+ require("@tensorflow/tfjs-core");
+ // tslint:disable-next-line: no-imports-from-dist
+-require("@tensorflow/tfjs-core/dist/public/chained_ops/register_all_chained_ops");
++// This creates a problem similar to https://github.com/tensorflow/tfjs/issues/4901
++//require("@tensorflow/tfjs-core/dist/public/chained_ops/register_all_chained_ops");
+ const barchart_1 = require("./render/barchart");
+ const confusion_matrix_1 = require("./render/confusion_matrix");
+ const heatmap_1 = require("./render/heatmap");
+@@ -37,28 +38,28 @@ const math_1 = require("./util/math");
+ const version_1 = require("./version");
+ exports.version_vis = version_1.version;
+ const render = {
+-    barchart: barchart_1.barchart,
+-    table: table_1.table,
+-    histogram: histogram_1.histogram,
+-    linechart: linechart_1.linechart,
+-    scatterplot: scatterplot_1.scatterplot,
+-    confusionMatrix: confusion_matrix_1.confusionMatrix,
+-    heatmap: heatmap_1.heatmap,
++  barchart: barchart_1.barchart,
++  table: table_1.table,
++  histogram: histogram_1.histogram,
++  linechart: linechart_1.linechart,
++  scatterplot: scatterplot_1.scatterplot,
++  confusionMatrix: confusion_matrix_1.confusionMatrix,
++  heatmap: heatmap_1.heatmap,
+ };
+ exports.render = render;
+ const metrics = {
+-    accuracy: math_1.accuracy,
+-    perClassAccuracy: math_1.perClassAccuracy,
+-    confusionMatrix: math_1.confusionMatrix,
++  accuracy: math_1.accuracy,
++  perClassAccuracy: math_1.perClassAccuracy,
++  confusionMatrix: math_1.confusionMatrix,
+ };
+ exports.metrics = metrics;
+ const show = {
+-    history: history_1.history,
+-    fitCallbacks: history_1.fitCallbacks,
+-    perClassAccuracy: quality_1.perClassAccuracy,
+-    valuesDistribution: tensor_1.valuesDistribution,
+-    layer: model_1.layer,
+-    modelSummary: model_1.modelSummary,
++  history: history_1.history,
++  fitCallbacks: history_1.fitCallbacks,
++  perClassAccuracy: quality_1.perClassAccuracy,
++  valuesDistribution: tensor_1.valuesDistribution,
++  layer: model_1.layer,
++  modelSummary: model_1.modelSummary,
+ };
+ exports.show = show;
+ var visor_1 = require("./visor");
