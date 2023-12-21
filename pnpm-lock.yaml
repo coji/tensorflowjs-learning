@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@tensorflow/tfjs-vis@1.5.1':
-    hash: znde6tb7qzq2iae27mtc7k5hqe
+    hash: aqem5vqdkn7ablvzcskct2s3mq
     path: patches/@tensorflow__tfjs-vis@1.5.1.patch
 
 dependencies:
@@ -39,7 +39,7 @@ dependencies:
     version: 4.15.0(seedrandom@3.0.5)
   '@tensorflow/tfjs-vis':
     specifier: ^1.5.1
-    version: 1.5.1(patch_hash=znde6tb7qzq2iae27mtc7k5hqe)(@tensorflow/tfjs-core@4.15.0)
+    version: 1.5.1(patch_hash=aqem5vqdkn7ablvzcskct2s3mq)(@tensorflow/tfjs-core@4.15.0)
   '@vercel/analytics':
     specifier: ^1.0.2
     version: 1.1.1
@@ -1725,7 +1725,7 @@ packages:
       '@tensorflow/tfjs-core': 4.15.0
     dev: false
 
-  /@tensorflow/tfjs-vis@1.5.1(patch_hash=znde6tb7qzq2iae27mtc7k5hqe)(@tensorflow/tfjs-core@4.15.0):
+  /@tensorflow/tfjs-vis@1.5.1(patch_hash=aqem5vqdkn7ablvzcskct2s3mq)(@tensorflow/tfjs-core@4.15.0):
     resolution: {integrity: sha512-oNithKiR7VZaE+xUvz6Leww4TYEPhKi8j5xnEYvT3j7brK2Njdvril7UgFtZ8EYZBdeX6XNim5Eu3/23gTQ1dA==}
     peerDependencies:
       '@tensorflow/tfjs-core': '>= 1.0.0'

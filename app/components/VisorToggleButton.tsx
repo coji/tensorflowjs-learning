@@ -11,6 +11,7 @@ export const VisorToggleButton = () => {
 
 	React.useEffect(() => {
 		let observer: MutationObserver
+		tfvis.visor().close()
 		const visorEl = tfvis.visor().el.querySelector('.visor')
 		if (visorEl) {
 			observer = new MutationObserver(() => {
@@ -23,19 +24,12 @@ export const VisorToggleButton = () => {
 		}
 	}, [setIsOpen])
 
+	const Arrow = isOpen ? ArrowRightFromLine : ArrowLeftFromLine
+
 	return (
 		<Toggle variant="outline" pressed={isOpen} onClick={handleClickToggleVisor}>
-			{isOpen ? (
-				<>
-					<ArrowRightFromLine className="mr-2 h-4 w-4" />
-					Close
-				</>
-			) : (
-				<>
-					<ArrowLeftFromLine className="mr-2 h-4 w-4" />
-					Open
-				</>
-			)}
+			<Arrow className="mr-2 size-4" />
+			{isOpen ? 'Close' : 'Open'}
 		</Toggle>
 	)
 }

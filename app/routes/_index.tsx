@@ -1,9 +1,4 @@
-import {
-	initialize,
-	createAndTrainModel,
-	runTest,
-	modelStatus,
-} from '~/models/car/mpg'
+import { initialize, createAndTrainModel, runTest } from '~/models/car/mpg'
 import { tfvis } from '~/services/tfvis'
 import { Button } from '~/components/ui/button'
 import React from 'react'
@@ -31,9 +26,7 @@ export default function IndexPage() {
 	}
 
 	return (
-		<div>
-			<div>{JSON.stringify(modelStatus())}</div>
-
+		<div className="text-center">
 			{isPrepared ? (
 				<Button type="button" onClick={() => handleClickRun()}>
 					Run
