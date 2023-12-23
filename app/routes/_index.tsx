@@ -1,41 +1,14 @@
-import { initialize, createAndTrainModel, runTest } from '~/models/car/mpg'
-import { tfvis } from '~/services/tfvis'
-import { Button } from '~/components/ui/button'
-import React from 'react'
-import { json } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-
-export const loader = async () => {
-	const isModelLoaded = await initialize()
-	return json({ isModelLoaded })
-}
+import { Link } from '@remix-run/react'
 
 export default function IndexPage() {
-	const { isModelLoaded } = useLoaderData() as { isModelLoaded: boolean }
-	const [isPrepared, setIsPrepared] = React.useState(isModelLoaded)
-
-	const handleClickRun = async () => {
-		tfvis.visor().open()
-		await runTest()
-	}
-
-	const handleClickCreateAndTrain = async () => {
-		tfvis.visor().open()
-		await createAndTrainModel()
-		setIsPrepared(true)
-	}
-
 	return (
 		<div className="text-center">
-			{isPrepared ? (
-				<Button type="button" onClick={() => handleClickRun()}>
-					Run
-				</Button>
-			) : (
-				<Button type="button" onClick={() => handleClickCreateAndTrain()}>
-					Create and train model
-				</Button>
-			)}
+			<h1>Models</h1>
+			<ul>
+				<li>
+					<Link to="/model/mpg">MPG</Link>
+				</li>
+			</ul>
 		</div>
 	)
 }

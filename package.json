@@ -1,53 +1,58 @@
 {
-	"name": "my-remix-app",
-	"private": true,
-	"sideEffects": false,
-	"type": "module",
-	"scripts": {
-		"build": "remix build",
-		"dev": "remix dev --manual",
-		"start": "remix-serve ./build/index.js",
-		"typecheck": "tsc"
-	},
-	"dependencies": {
-		"@radix-ui/react-icons": "^1.3.0",
-		"@radix-ui/react-slot": "^1.0.2",
-		"@radix-ui/react-switch": "^1.0.3",
-		"@radix-ui/react-toggle": "^1.0.3",
-		"@remix-run/css-bundle": "^2.0.0",
-		"@remix-run/node": "^2.0.0",
-		"@remix-run/react": "^2.0.0",
-		"@remix-run/serve": "^2.0.0",
-		"@tensorflow/tfjs": "^4.15.0",
-		"@tensorflow/tfjs-vis": "^1.5.1",
-		"@vercel/analytics": "^1.0.2",
-		"@vercel/remix": "^2.0.0",
-		"class-variance-authority": "^0.7.0",
-		"clsx": "^2.0.0",
-		"isbot": "^3.6.8",
-		"lucide-react": "^0.299.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"tailwind-merge": "^2.1.0",
-		"tailwindcss-animate": "^1.0.7"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.4.1",
-		"@remix-run/dev": "^2.0.0",
-		"@types/react": "^18.2.20",
-		"@types/react-dom": "^18.2.7",
-		"autoprefixer": "^10.4.16",
-		"eslint": "^8.38.0",
-		"postcss": "^8.4.32",
-		"tailwindcss": "^3.4.0",
-		"typescript": "^5.1.6"
-	},
-	"pnpm": {
-		"patchedDependencies": {
-			"@tensorflow/tfjs-vis@1.5.1": "patches/@tensorflow__tfjs-vis@1.5.1.patch"
-		}
-	},
-	"engines": {
-		"node": ">=18.0.0"
-	}
+  "name": "my-remix-app",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "vite build && vite build --ssr",
+    "dev": "vite dev",
+    "start": "remix-serve ./build/server/index.js",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@radix-ui/react-icons": "1.3.0",
+    "@radix-ui/react-slot": "1.0.2",
+    "@radix-ui/react-switch": "1.0.3",
+    "@radix-ui/react-toggle": "1.0.3",
+    "@remix-run/css-bundle": "2.4.1",
+    "@remix-run/node": "2.4.1",
+    "@remix-run/react": "2.4.1",
+    "@remix-run/serve": "2.4.1",
+    "@tensorflow/tfjs": "4.15.0",
+    "@tensorflow/tfjs-vis": "1.5.1",
+    "class-variance-authority": "0.7.0",
+    "clsx": "2.0.0",
+    "isbot": "3.7.1-deprecated",
+    "lucide-react": "0.300.0",
+    "react": "18.3.0-canary-c5b937576-20231219",
+    "react-dom": "18.3.0-canary-c5b937576-20231219",
+    "tailwind-merge": "2.2.0",
+    "tailwindcss-animate": "1.0.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.4.1",
+    "@flydotio/dockerfile": "0.5.0",
+    "@remix-run/dev": "2.4.1",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.18",
+    "autoprefixer": "10.4.16",
+    "eslint": "8.56.0",
+    "postcss": "8.4.32",
+    "tailwindcss": "3.4.0",
+    "typescript": "5.3.3",
+    "vite": "5.0.10",
+    "vite-tsconfig-paths": "4.2.2"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@tensorflow/tfjs-vis@1.5.1": "patches/@tensorflow__tfjs-vis@1.5.1.patch"
+    }
+  },
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
