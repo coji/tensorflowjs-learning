@@ -5,13 +5,13 @@
   },
   "linter": {
     "enabled": true,
-    "rules": {
-      "recommended": true
-    }
+    "rules": { "recommended": true },
+    "ignore": ["node_modules", "build"]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space"
+    "indentStyle": "space",
+    "ignore": ["node_modules", "build"]
   },
   "javascript": {
     "formatter": {
