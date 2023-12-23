@@ -116,7 +116,7 @@ async function trainModel(
     callbacks: tfvis.show.fitCallbacks(
       { name: 'Training Performance' },
       ['loss', 'mse'],
-      { height: 200, callbacks: ['onEpochEnd', 'onBatchEnd'] },
+      { height: 200, callbacks: ['onEpochEnd'] },
     ),
   })
 }
