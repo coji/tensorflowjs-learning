@@ -12,7 +12,7 @@ let model: tf.LayersModel | null = null
  * Get the car data reduced to just the variables we are interested
  * and cleaned of missing data.
  */
-async function getData() {
+export async function getData() {
   const carsDataResponse = await fetch(
     'https://storage.googleapis.com/tfjs-tutorials/carsData.json',
   )

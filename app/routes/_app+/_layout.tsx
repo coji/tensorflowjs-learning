@@ -15,7 +15,7 @@ export default function AppLayout() {
         <VisorToggleButton />
       </header>
 
-      <main className="container bg-slate-200 flex justify-center items-center h-full">
+      <main className="container bg-slate-200 grid grid-cols-1 justify-center items-center h-full p-2">
         <Outlet />
       </main>
 

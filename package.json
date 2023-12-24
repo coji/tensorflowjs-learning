@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@radix-ui/react-icons": "1.3.0",
+    "@radix-ui/react-scroll-area": "1.0.5",
     "@radix-ui/react-slot": "1.0.2",
     "@radix-ui/react-switch": "1.0.3",
     "@radix-ui/react-toggle": "1.0.3",
@@ -28,6 +29,7 @@
     "lucide-react": "0.300.0",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
+    "react-twc": "1.1.0",
     "tailwind-merge": "2.2.0",
     "tailwindcss-animate": "1.0.7"
   },

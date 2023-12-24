@@ -2,17 +2,34 @@ import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import React from 'react'
 import { Button } from '~/components/ui/button'
-import { createAndTrainModel, initialize, runTest } from '~/models/car_mpg'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '~/components/ui/card'
+import { Spacer } from '~/components/ui/spacer'
+import { HStack } from '~/components/ui/stack'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '~/components/ui/table'
+import { createAndTrainModel, getData, runTest } from '~/models/car_mpg'
 import { tfvis } from '~/services/tfvis'
 
 export const loader = async () => {
-  const isModelLoaded = await initialize()
-  return json({ isModelLoaded })
+  const data = await getData()
+  return json({ data: data.slice(0, 50) })
 }
 
 export default function MpgModelPage() {
-  const { isModelLoaded } = useLoaderData() as { isModelLoaded: boolean }
-  const [isPrepared, setIsPrepared] = React.useState(isModelLoaded)
+  const { data } = useLoaderData<typeof loader>()
+  const [isPrepared, setIsPrepared] = React.useState(false)
 
   const handleClickRun = async () => {
     tfvis.visor().open()
@@ -26,16 +43,48 @@ export default function MpgModelPage() {
   }
 
   return (
-    <div className="text-center">
-      {isPrepared ? (
-        <Button type="button" onClick={() => handleClickRun()}>
-          Run
-        </Button>
-      ) : (
-        <Button type="button" onClick={() => handleClickCreateAndTrain()}>
-          Create and train model
-        </Button>
-      )}
-    </div>
+    <Card>
+      <CardHeader>
+        <HStack>
+          <div>
+            <CardTitle>Data</CardTitle>
+            <CardDescription>Horse Power prediction</CardDescription>
+          </div>
+          <Spacer />
+          <div>
+            {isPrepared ? (
+              <Button type="button" onClick={() => handleClickRun()}>
+                Run
+              </Button>
+            ) : (
+              <Button type="button" onClick={() => handleClickCreateAndTrain()}>
+                Create and train model
+              </Button>
+            )}
+          </div>
+        </HStack>
+      </CardHeader>
+
+      <CardContent>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>No.</TableHead>
+              <TableHead>Horse Power</TableHead>
+              <TableHead>Mile Per Garon (MPG)</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.map((row, index) => (
+              <TableRow key={`${index}`}>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{row.horsepower}</TableCell>
+                <TableCell>{row.mpg}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardContent>
+    </Card>
   )
 }
