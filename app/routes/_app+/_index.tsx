@@ -6,7 +6,8 @@ export default function IndexPage() {
       <h1>Models</h1>
       <ul>
         <li>
-          <Link to="/model/mpg">MPG</Link>
+          <Link to="simple">simple</Link>
+          <Link to="mpg">MPG</Link>
         </li>
       </ul>
     </div>

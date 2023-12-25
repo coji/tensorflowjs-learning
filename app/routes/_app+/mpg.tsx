@@ -1,24 +1,22 @@
 import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import React from 'react'
-import { Button } from '~/components/ui/button'
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '~/components/ui/card'
-import { Spacer } from '~/components/ui/spacer'
-import { HStack } from '~/components/ui/stack'
-import {
+  HStack,
+  Spacer,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '~/components/ui/table'
+} from '~/components/ui'
 import { createAndTrainModel, getData, runTest } from '~/models/car_mpg'
 import { tfvis } from '~/services/tfvis'
 
