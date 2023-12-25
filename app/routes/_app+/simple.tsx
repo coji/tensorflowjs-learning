@@ -34,7 +34,7 @@ export default function SimplePage() {
       <CardContent>
         <form onSubmit={handleSubmit}>
           <Label>Input</Label>
-          <Input name="input" type="number" defaultValue="100" />
+          <Input name="input" type="number" defaultValue="5" />
 
           <div>Result: {result}</div>
 

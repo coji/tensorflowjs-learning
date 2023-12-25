@@ -6,8 +6,24 @@ export const run = async (testValue: number) => {
   model.add(tf.layers.dense({ units: 1, inputShape: [1] }))
   model.compile({ loss: 'meanSquaredError', optimizer: 'sgd' })
 
-  const xs = tf.tensor2d([-1, 0, 1, 2, 3, 4], [6, 1])
-  const ys = tf.tensor2d([-3, -1, 1, 3, 5, 7], [6, 1])
+  // y = 2x - 1
+  const data = [
+    { x: -1, y: -3 },
+    { x: 0, y: -1 },
+    { x: 1, y: 1 },
+    { x: 2, y: 3 },
+    { x: 3, y: 5 },
+    { x: 4, y: 7 },
+  ]
+  const xs = tf.tensor2d(
+    data.map((d) => d.x),
+    [6, 1],
+  )
+  const ys = tf.tensor2d(
+    data.map((d) => d.y),
+    [6, 1],
+  )
+
   await model.fit(xs, ys, {
     epochs: 250,
     callbacks: tfvis.show.fitCallbacks(
@@ -24,5 +40,19 @@ export const run = async (testValue: number) => {
   } else {
     ret = await predict.dataSync()[0]
   }
+
+  tfvis.render.scatterplot(
+    { name: 'Model Predictions vs Original Data' },
+    {
+      values: [data, [{ x: testValue, y: ret }]],
+      series: ['x', 'y'],
+    },
+    {
+      xLabel: 'X',
+      yLabel: 'Y',
+      height: 300,
+    },
+  )
+
   return ret
 }
