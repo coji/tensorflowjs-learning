@@ -1,3 +1,4 @@
+import { type LinksFunction } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -6,8 +7,11 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
-import { VisorToggleButton } from '~/components/VisorToggleButton'
-import '~/styles/globals.css'
+import globalStyles from '~/styles/globals.css'
+
+export const links: LinksFunction = () => {
+  return [{ rel: 'stylesheet', href: globalStyles }]
+}
 
 export default function App() {
   return (

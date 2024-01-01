@@ -4,9 +4,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "remix vite:dev",
-    "start": "remix-serve ./build/server/index.js",
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve ./build/index.js",
     "typecheck": "tsc",
     "lint": "biome lint .",
     "format": "biome format .",
@@ -26,13 +26,19 @@
     "@tensorflow/tfjs-vis": "1.5.1",
     "class-variance-authority": "0.7.0",
     "clsx": "2.0.0",
+    "duckdb": "0.9.3-dev0.0",
     "isbot": "3.7.1-deprecated",
+    "kysely": "0.26.3",
+    "kysely-duckdb": "0.1.0",
     "lucide-react": "0.303.0",
     "react": "18.3.0-canary-c5b937576-20231219",
     "react-dom": "18.3.0-canary-c5b937576-20231219",
     "react-twc": "1.2.2",
+    "remix-typedjson": "0.4.1",
+    "superjson-remix": "0.2.0",
     "tailwind-merge": "2.2.0",
-    "tailwindcss-animate": "1.0.7"
+    "tailwindcss-animate": "1.0.7",
+    "tsx": "4.7.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
